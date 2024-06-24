@@ -105,7 +105,7 @@ efi_status_t vprintf_(char16_t* format, va_list va);
  * \param format A string that specifies the format of the output
  * \return The number of characters that are sent to the output function, not counting the terminating null character
  */
-int fctprintf(void (*out)(char16_t character, void* arg), void* arg, char16_t* format, ...);
+efi_status_t fctprintf(void (*out)(char16_t character, void* arg), void* arg, char16_t* format, ...);
 
 
 #ifdef __cplusplus
