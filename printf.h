@@ -32,8 +32,7 @@
 #ifndef _PRINTF_H_
 #define _PRINTF_H_
 
-#include <stdarg.h>
-#include <stddef.h>
+#include <efi.h>
 
 
 #ifdef __cplusplus
@@ -46,7 +45,7 @@ extern "C" {
  * This function is declared here only. You have to write your custom implementation somewhere
  * \param character Character to output
  */
-void _putchar(char character);
+void _putchar(char16_t ch);
 
 
 /**
@@ -58,7 +57,7 @@ void _putchar(char character);
  * \return The number of characters that are written into the array, not counting the terminating null character
  */
 #define printf printf_
-int printf_(const char* format, ...);
+efi_status_t printf_(char16_t* format, ...);
 
 
 /**
@@ -69,7 +68,7 @@ int printf_(const char* format, ...);
  * \return The number of characters that are WRITTEN into the buffer, not counting the terminating null character
  */
 #define sprintf sprintf_
-int sprintf_(char* buffer, const char* format, ...);
+efi_status_t sprintf_(char16_t* buffer, char16_t* format, ...);
 
 
 /**
@@ -84,8 +83,8 @@ int sprintf_(char* buffer, const char* format, ...);
  */
 #define snprintf  snprintf_
 #define vsnprintf vsnprintf_
-int  snprintf_(char* buffer, size_t count, const char* format, ...);
-int vsnprintf_(char* buffer, size_t count, const char* format, va_list va);
+efi_status_t  snprintf_(char16_t* buffer, size_t count, char16_t* format, ...);
+efi_status_t vsnprintf_(char16_t* buffer, size_t count, char16_t* format, va_list va);
 
 
 /**
@@ -95,7 +94,7 @@ int vsnprintf_(char* buffer, size_t count, const char* format, va_list va);
  * \return The number of characters that are WRITTEN into the buffer, not counting the terminating null character
  */
 #define vprintf vprintf_
-int vprintf_(const char* format, va_list va);
+efi_status_t vprintf_(char16_t* format, va_list va);
 
 
 /**
@@ -106,7 +105,7 @@ int vprintf_(const char* format, va_list va);
  * \param format A string that specifies the format of the output
  * \return The number of characters that are sent to the output function, not counting the terminating null character
  */
-int fctprintf(void (*out)(char character, void* arg), void* arg, const char* format, ...);
+int fctprintf(void (*out)(char16_t character, void* arg), void* arg, char16_t* format, ...);
 
 
 #ifdef __cplusplus
